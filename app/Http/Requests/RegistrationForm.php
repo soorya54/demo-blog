@@ -29,6 +29,7 @@ class RegistrationForm extends FormRequest
         return [
             'name'=>'required',
             'email'=>'required|email',
+            'location'=>'required|unique:users,email',
             'password'=>'required|confirmed'
         ];
     }
@@ -37,6 +38,7 @@ class RegistrationForm extends FormRequest
         $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
+            'location' => request()->input('location'),
             'password' => bcrypt(request('password'))
         ]);
         //sign in
