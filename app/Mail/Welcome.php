@@ -19,8 +19,7 @@ class Welcome extends Mailable
      *
      * @return void
      */
-    public function __construct($user)
-    {
+    public function __construct($user){
         $this->user = $user;    }
 
     /**
@@ -28,8 +27,7 @@ class Welcome extends Mailable
      *
      * @return $this
      */
-    public function build()
-    {
+    public function build(){
         return $this->view('emails.welcome');
     }
 }

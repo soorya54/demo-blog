@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
-	<div class="col-sm-8">
-		<h1>Register</h1>
+<div class="col-sm-8">
+	<h1>Register</h1>
 	<form method="POST" action="/register">
 		{{csrf_field()}}
 		<div class="form-group">
@@ -11,6 +11,11 @@
 		<div class="form-group">
 			<label for="email">Email :</label>
 			<input type="email" class="form-control" id="email" name="email" required>
+		</div>
+		<div class="form-group">
+			<label for="location">Location :</label> <br>
+			<input type="radio" id="location" name="location" value="coimbatore" checked> Coimbatore<br>
+			<input type="radio" id="location" name="location" value="bangalore"> Bangalore<br>
 		</div>
 		<div class="form-group">
 			<label for="password">Password :</label>
@@ -25,5 +30,5 @@
 		</div>
 		@include('layouts.errors')
 	</form>
-	</div>
+</div>
 @endsection
