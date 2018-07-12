@@ -7,6 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\User;
+use App\Mail\PostPublished;
 
 class SendMailJob implements ShouldQueue
 {
@@ -30,5 +32,11 @@ class SendMailJob implements ShouldQueue
     public function handle()
     {
         \Log::info('test');
+        $users = User::all();
+
+        foreach ($users->chunk(100) as $user)
+        {
+            \Mail::to($user)->send(new PostPublished);
+        }
     }
 }
