@@ -28,8 +28,8 @@ class RegistrationForm extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'required|email',
-            'location'=>'required|unique:users,email',
+            'email'=>'required|email|unique_with:users,location',
+            'location'=>'required',
             'password'=>'required|confirmed'
         ];
     }
