@@ -13,6 +13,23 @@ body {
   color: #555;
 }
 
+table {
+  border-collapse: collapse;
+  font-family: arial,sans-serif;
+  width: auto;
+}
+
+td,
+th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 h1,
 .h1,
 h2,

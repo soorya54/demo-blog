@@ -1,5 +1,6 @@
 <?php
 Route::get('/','PostsController@index')->name('home');
+Route::get('/admin', 'AdminController@admin')->middleware('is_admin')->name('admin');
 Route::get('/posts/create','PostsController@create');
 Route::post('/posts','PostsController@store');
 Route::get('/posts/{post}','PostsController@show');

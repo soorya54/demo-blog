@@ -39,7 +39,8 @@ class RegistrationForm extends FormRequest
             'name' => request('name'),
             'email' => request('email'),
             'location' => request()->input('location'),
-            'password' => bcrypt(request('password'))
+            'password' => bcrypt(request('password')),
+            'type' => User::DEFAULT_TYPE,   
         ]);
         //sign in
         auth()->login($user);
