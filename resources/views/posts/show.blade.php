@@ -27,7 +27,22 @@
 			@endforeach
 		</ul>
 	</div>
-	<hr>
+	@if($post->user->type == 'admin' && $post->approve == 0)
+	  	<form method="POST" action="/posts/{{$post->id}}/approve">
+			{{csrf_field()}}
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Approve</button>
+			</div>
+			@include('layouts.errors')
+		</form>
+		<form method="POST" action="/posts/{{$post->id}}/delete">
+			{{csrf_field()}}
+			<div class="form-group">
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</div>
+			@include('layouts.errors')
+		</form>
+	@endif
 	@if(auth()->check())
 	<div class="card">
 		<div class="card-block">

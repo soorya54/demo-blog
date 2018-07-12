@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-sm-8 blog-main">	
-	<h1>Admin</h1>	
+	<h2>Admin</h2>	
 	<hr>
 	<table>
 		<tr>
