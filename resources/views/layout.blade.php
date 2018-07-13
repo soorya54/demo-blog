@@ -20,10 +20,11 @@
     @endif
     <div class="blog-header">
       <div class="container">
-    <h1 class="blog-title">Sample Blog</h1>
-    <p class="lead blog-description">An example blog built with <em>Laravel</em>.</p>
+        <h1 class="blog-title">Sample Blog</h1>
+        <p class="lead blog-description">An example blog built with <em>Laravel</em>.</p>
       </div>
-  </div>
+      
+    </div>
     <div class="container">
       <div class="row">
         	@yield('content')
