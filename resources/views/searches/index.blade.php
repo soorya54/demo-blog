@@ -9,9 +9,10 @@
     @if( $posts->count() )
         @foreach($posts as $post)   
             @if($post->approve == 1)
-            @include('posts.post')
+                @include('posts.post')
             @endif
         @endforeach
+        {{ $posts->appends(Request::only('s'))->links() }}
     @else
 
         <p>No post martch on your term <strong>{{ $s }}</strong></p>

@@ -12,7 +12,7 @@ class SearchesController extends Controller
 		
 		// Query and paginate result
 		$posts = Post::where('title', 'like', "%$s%")
-				->orWhere('body', 'like', "%$s%")->get();
+				->orWhere('body', 'like', "%$s%")->SimplePaginate(2);
 
 		return view('searches.index', ['posts' => $posts, 's' => $s ]);
     }
