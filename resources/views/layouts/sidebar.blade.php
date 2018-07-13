@@ -1,4 +1,11 @@
 <div class="col-sm-3 offset-sm-1 blog-sidebar">
+  <div class="sidebar-module">
+      <h4>Search</h4>
+      <form action="/search/" method="GET">
+          <input type="text" name="s" value="{{ Request::query('s') }}" placeholder="Search this site..." / required="">
+          <button type="submit" class="btn btn-primary">Search</button>
+      </form>   
+  </div>
   <div class="sidebar-module sidebar-module-inset">
     <h4>About</h4>
     <p>Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>

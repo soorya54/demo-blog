@@ -27,7 +27,7 @@
 			@endforeach
 		</ul>
 	</div>
-	@if($post->user->type == 'admin' && $post->approve == 0)
+	@if($id == '1' && $post->approve == 0)
 	  	<form method="POST" action="/posts/{{$post->id}}/approve">
 			{{csrf_field()}}
 			<div class="form-group">

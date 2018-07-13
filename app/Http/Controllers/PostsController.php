@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Auth;
 class PostsController extends Controller
 {
     public function __construct(){
@@ -10,12 +12,20 @@ class PostsController extends Controller
     }
     public function index(){
     	$posts = Post::latest()
-        ->filter(request(['month','year']))
-        ->get();
+        ->filter(request(['month','year']))->SimplePaginate(2);
     	return view('posts.index',compact('posts'));
 }
     public function show(Post $post){
-    	return view('posts.show',compact('post'));
+        $id = Auth::user()->id;
+        if($id == 1){
+    	   return view('posts.show',compact('post','id'));
+        }
+        elseif ($post->approve == 1){
+            return view('posts.show',compact('post','id'));
+        }
+        else{
+            return redirect()->back();
+        }
     }
     public function create(){
     	return view('posts.create');
@@ -33,8 +43,6 @@ class PostsController extends Controller
     }
     public function approve($id,Request $request,Post $post){
         $this->post = Post::where('id', $id)->update(['approve'=>'1']);
-        // $selection = Post::find($this->id);
-        // $selection->update(['approve'=>'1']);
         session()->flash('message','Post has been Approved');
         return redirect('/approve');    
     }
