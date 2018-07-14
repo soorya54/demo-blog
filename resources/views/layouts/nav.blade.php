@@ -5,6 +5,7 @@
       @if(Auth::check())
         @if(Auth::user()->type == 'admin')
           <a class="nav-link ml-auto" href="/admin">Admin</a>
+          <a class="nav-link" href="/import">Import User Data</a>
           <a class="nav-link" href="/approve">Approve</a>
         @else
           <a class="nav-link ml-auto" href="#">{{Auth::user()->name}}</a>

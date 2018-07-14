@@ -5,6 +5,8 @@ Route::group(['middleware' => 'is_admin'], function(){
 	Route::get('/approve', 'AdminController@approve')->name('approve');
 	Route::post('/posts/{id}/approve','PostsController@approve');
 	Route::post('/posts/{id}/delete','PostsController@delete');
+	Route::get('import', 'ImportController@import');
+	Route::post('importExcel', 'ImportController@importExcel');
 });
 
 Route::get('/posts/create','PostsController@create');

@@ -16,16 +16,24 @@ class PostsController extends Controller
     	return view('posts.index',compact('posts'));
 }
     public function show(Post $post){
-        $id = Auth::user()->id;
-        if($id == 1){
-    	   return view('posts.show',compact('post','id'));
+        if(auth()->check()){
+            $id = Auth::findorFail()->user()->id;
+            if($id == 1){
+        	   return view('posts.show',compact('post','id'));
+            }
+            elseif ($post->approve == 1){
+                return view('posts.show',compact('post','id'));
+            }
+            else{
+                return redirect()->back();
+            }
         }
-        elseif ($post->approve == 1){
-            return view('posts.show',compact('post','id'));
+        elseif($post->approve == 1){
+            return view('posts.show',compact('post'));
         }
         else{
-            return redirect()->back();
-        }
+                return redirect()->back();
+            }
     }
     public function create(){
     	return view('posts.create');

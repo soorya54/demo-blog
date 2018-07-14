@@ -27,6 +27,6 @@ class WelcomeAgain extends Mailable
      * @return $this
      */
     public function build()    {
-        return $this->markdown('emails.welcome-again');
+        return $this->subject('Welcome to Sample Blog')->markdown('emails.welcome-again');
     }
 }
