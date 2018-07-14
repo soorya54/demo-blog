@@ -27,37 +27,37 @@
 			@endforeach
 		</ul>
 	</div>
-	@if($id == '1' && $post->approve == 0)
-	  	<form method="POST" action="/posts/{{$post->id}}/approve">
-			{{csrf_field()}}
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Approve</button>
-			</div>
-			@include('layouts.errors')
-		</form>
-		<form method="POST" action="/posts/{{$post->id}}/delete">
-			{{csrf_field()}}
-			<div class="form-group">
-				<button type="submit" class="btn btn-danger">Delete</button>
-			</div>
-			@include('layouts.errors')
-		</form>
-	@endif
 	@if(auth()->check())
-	<div class="card">
-		<div class="card-block">
-			<form method="POST" action="/posts/{{$post->id}}/comments">
+		@if($id == '1' && $post->approve == 0)
+		  	<form method="POST" action="/posts/{{$post->id}}/approve">
 				{{csrf_field()}}
 				<div class="form-group">
-					<textarea name="body" placeholder="Your comment here." class="form-control" required></textarea>
+					<button type="submit" class="btn btn-primary">Approve</button>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Add Comment</button>
-				</div>
+				@include('layouts.errors')
 			</form>
-			@include('layouts.errors')
+			<form method="POST" action="/posts/{{$post->id}}/delete">
+				{{csrf_field()}}
+				<div class="form-group">
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</div>
+				@include('layouts.errors')
+			</form>
+		@endif
+		<div class="card">
+			<div class="card-block">
+				<form method="POST" action="/posts/{{$post->id}}/comments">
+					{{csrf_field()}}
+					<div class="form-group">
+						<textarea name="body" placeholder="Your comment here." class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Add Comment</button>
+					</div>
+				</form>
+				@include('layouts.errors')
+			</div>
 		</div>
-	</div>
 	@endif
 </div>
 @endsection
