@@ -29,6 +29,7 @@ class ImportController extends Controller
     			$file = $request->file('import_file');
     			$file->move(storage_path().'/files/excel', 'upload.xlsx');
     			dispatch(new ImportExcelJob());
+                session()->flash('message','File has been Uploaded to queue.');
     		}
             else{
                 session()->flash('message','Check the File Format');

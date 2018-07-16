@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email');
-            $table->string('location');
+            $table->string('location')->default('coimbatore');
             $table->string('password')->default('NULL');
             $table->rememberToken();
             $table->timestamps();
