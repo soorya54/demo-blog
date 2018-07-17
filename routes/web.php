@@ -1,5 +1,6 @@
 <?php
 Route::get('/','PostsController@index')->name('home');
+Route::get('/home','PostsController@index');
 Route::group(['middleware' => 'is_admin'], function(){
 	Route::get('/admin', 'AdminController@admin')->name('admin');
 	Route::get('/approve', 'AdminController@approve')->name('approve');
@@ -8,6 +9,9 @@ Route::group(['middleware' => 'is_admin'], function(){
 	Route::get('import', 'ImportController@import');
 	Route::post('importExcel', 'ImportController@importExcel');
 });
+Route::get('/user/verify/{token}','RegistrationController@verify');
+Route::get('/changePassword','RegistrationController@showchangepassword');
+Route::post('/changePassword','RegistrationController@changePassword')->name('changePassword');
 
 Route::get('/posts/create','PostsController@create');
 Route::post('/posts','PostsController@store');

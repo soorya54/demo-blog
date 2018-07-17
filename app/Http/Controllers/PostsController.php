@@ -17,7 +17,7 @@ class PostsController extends Controller
 }
     public function show(Post $post){
         if(auth()->check()){
-            $id = Auth::findorFail()->user()->id;
+            $id = auth()->user()->id;
             if($id == 1){
         	   return view('posts.show',compact('post','id'));
             }

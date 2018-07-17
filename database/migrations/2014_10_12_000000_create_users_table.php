@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('location')->default('coimbatore');
             $table->string('password')->default('NULL');
+            $table->boolean('verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

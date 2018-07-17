@@ -17,6 +17,7 @@ use Excel;
 use App\Mail\WelcomeAgain;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
+use App\VerifyUser;
 
 class ImportExcelJob implements ShouldQueue
 {
@@ -49,24 +50,31 @@ class ImportExcelJob implements ShouldQueue
                             $flag = 1;
                         }
                     }
-                    else{
-                        \Mail::to($row['email'])->send(new WelcomeAgain($row['email']));
-                    }
                 }
                 if($flag == 1)
                     continue;
                 $data['name'] = $row['name'];
                 $data['email'] = $row['email'];
                 $data['location'] = $row['location'];
-                    if(!empty($data)) {
-                        DB::table('users')->insert($data);
-                    }
-                    else{
-                        session()->flash('message','Check the File Format');
-                        return back();
-                    }
+                if(!empty($data)) {
+                    DB::table('users')->insert($data);
+                }
+                else{
+                    session()->flash('message','Check the File Format');
+                    return back();
+                }
             }
         });
+        $users = User::All();
+        foreach ($users as $user) {
+            if($user->verified == 0 && $user->password == 'NULL'){
+                $verifyUser = VerifyUser::create([
+                    'user_id' => $user->id,
+                    'token' => str_random(40)
+                ]);
+                \Mail::to($user)->send(new WelcomeAgain($user));
+            }
+        }
         session()->flash('message','File has been Uploaded.');
         return back();
     }

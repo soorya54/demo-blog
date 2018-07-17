@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\User;
+use App\VerifyUser;
 use App\Mail\WelcomeAgain;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
@@ -40,7 +41,11 @@ class RegistrationForm extends FormRequest
             'email' => request('email'),
             'location' => request()->input('location'),
             'password' => bcrypt(request('password')),
-            'type' => User::DEFAULT_TYPE,   
+            'type' => User::DEFAULT_TYPE,
+        ]);
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
         ]);
         //sign in
         auth()->login($user);

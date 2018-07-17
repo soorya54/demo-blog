@@ -1,11 +1,9 @@
 @component('mail::message')
-# Introduction
+# Welcome to Sample Blog, {{$user['name']}}
 
-Thank you for registering.
+Thank you for registering. Click the link below to verify your account.
 
-@component('mail::button', ['url' => 'https://www.google.co.in/'])
-Start Browsing
-@endcomponent
+<a href="http://localhost:8000/user/verify/{{$user->verifyUser->token}}">VERIFY</a>
 
 @component('mail::panel', ['url' => ''])
 Have a Good day.
