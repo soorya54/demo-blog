@@ -37,6 +37,10 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
     public function publish(Post $post){
         $this->posts()->save($post);
         dispatch(new SendMailJob());
