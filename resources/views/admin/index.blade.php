@@ -17,7 +17,7 @@
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
 			<td>{{$user->location}}</td>
-			<td>{{$user->created_at->toFormattedDateString()}}</td>
+			<td>{{ Carbon\Carbon::parse($user->created_at)->toFormattedDateString()}}</td>
 			<td>
 				@if($user->type == 'admin')
 					Admin
